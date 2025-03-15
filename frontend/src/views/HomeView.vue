@@ -1,27 +1,33 @@
 <template>
   <main class="content">
     <form action="#" method="post">
-
       <div class="content__wrapper">
         <h1 class="title title--big">Конструктор пиццы</h1>
 
         <div class="content__dough">
-
           <div class="sheet">
             <h2 class="title title--small sheet__title">Выберите тесто</h2>
 
             <div class="sheet__content dough">
-              <label v-for="depth in dough"
-                :key="depth.id"
-                class="dough__input dough__input--light">
-                <input type="radio" name="dought" :value="depth.name_value" class="visually-hidden" v-model="picked">
-                <b>{{ depth.name }}</b>
-                <span>{{ depth.descriptions }}</span>
+              <label
+                v-for="doughType in doughItems"
+                :key="doughType.id"
+                class="dough__input"
+              >
+                <input
+                  type="radio"
+                  name="dough"
+                  :value="doughType.value"
+                  class="visually-hidden"
+                  checked
+                />
+                <img :src="getImage(doughType.image)" :alt="doughType.name" />
+
+                <b>{{ doughType.name }}</b>
+                <span>{{ doughType.description }}</span>
               </label>
             </div>
-
           </div>
-
         </div>
 
         <div class="content__diameter">
@@ -29,9 +35,19 @@
             <h2 class="title title--small sheet__title">Выберите размер</h2>
 
             <div class="sheet__content diameter">
-              <label v-for="size in sizes" :key="size.id" class="diameter__input" :class="`diameter__input--${size.value}`">
-                <input type="radio" name="diameter" :value="size.name_value" class="visually-hidden">
-                <span>{{ size.name }}</span>
+              <label
+                v-for="sizeType in sizeItems"
+                :key="sizeType.id"
+                class="diameter__input"
+                :class="`diameter__input--${sizeType.value}`"
+              >
+                <input
+                  type="radio"
+                  name="diameter"
+                  :value="sizeType.value"
+                  class="visually-hidden"
+                />
+                <span>{{ sizeType.name }}</span>
               </label>
             </div>
           </div>
@@ -39,16 +55,21 @@
 
         <div class="content__ingredients">
           <div class="sheet">
-            <h2 class="title title--small sheet__title">Выберите ингредиенты</h2>
+            <h2 class="title title--small sheet__title">
+              Выберите ингредиенты
+            </h2>
 
             <div class="sheet__content ingredients">
-
               <div class="ingredients__sauce">
                 <p>Основной соус:</p>
 
-                <label v-for="sauce in sauces" :key="sauce.id" class="radio ingredients__input">
-                  <input type="radio" name="sauce" :value="sauce.name_value">
-                  <span>{{ sauce.name }}</span>
+                <label
+                  v-for="sauceType in sauceItems"
+                  :key="sauceType.id"
+                  class="radio ingredients__input"
+                >
+                  <input type="radio" name="sauce" :value="sauceType.value" />
+                  <span>{{ sauceType.name }}</span>
                 </label>
               </div>
 
@@ -56,27 +77,43 @@
                 <p>Начинка:</p>
 
                 <ul class="ingredients__list">
-                  <li class="ingredients__item"
-                    v-for="ingredient in ingredients"
-                    :key="ingredient.id"
-                    :title="ingredient.name"
+                  <li
+                    v-for="ingredientType in ingredientItems"
+                    :key="ingredientType.id"
+                    class="ingredients__item"
                   >
-                    <span class="filling filling--mushrooms">{{ ingredient.name }}</span>
+                    <div class="filling">
+                      <img
+                        :src="getImage(ingredientType.image)"
+                        :alt="ingredientType.name"
+                      />
+                      {{ ingredientType.name }}
+                    </div>
 
                     <div class="counter counter--orange ingredients__counter">
-                      <button type="button" class="counter__button counter__button--minus" disabled>
+                      <button
+                        type="button"
+                        class="counter__button counter__button--minus"
+                        disabled
+                      >
                         <span class="visually-hidden">Меньше</span>
                       </button>
-                      <input type="text" name="counter" class="counter__input" value="0">
-                      <button type="button" class="counter__button counter__button--plus">
+                      <input
+                        type="text"
+                        name="counter"
+                        class="counter__input"
+                        value="0"
+                      />
+                      <button
+                        type="button"
+                        class="counter__button counter__button--plus"
+                      >
                         <span class="visually-hidden">Больше</span>
                       </button>
                     </div>
                   </li>
                 </ul>
-
               </div>
-
             </div>
           </div>
         </div>
@@ -84,7 +121,11 @@
         <div class="content__pizza">
           <label class="input">
             <span class="visually-hidden">Название пиццы</span>
-            <input type="text" name="pizza_name" placeholder="Введите название пиццы">
+            <input
+              type="text"
+              name="pizza_name"
+              placeholder="Введите название пиццы"
+            />
           </label>
 
           <div class="content__constructor">
@@ -102,18 +143,32 @@
             <button type="button" class="button" disabled>Готовьте!</button>
           </div>
         </div>
-
       </div>
-
     </form>
   </main>
 </template>
 
 <script setup>
-  import dough from '../mocks/dough.json'
-  import sizes from '../mocks/sizes.json'
-  import ingredients from '../mocks/ingredients.json'
-  import sauces from '../mocks/sauces.json'
+import {
+  normalizeDough,
+  normalizeIngredients,
+  normalizeSauces,
+  normalizeSize,
+} from "@/common/helpers/normalize";
+import doughJSON from "@/mocks/dough.json";
+import ingredientsJSON from "@/mocks/ingredients.json";
+import saucesJSON from "@/mocks/sauces.json";
+import sizesJSON from "@/mocks/sizes.json";
+
+const doughItems = doughJSON.map(normalizeDough);
+const ingredientItems = ingredientsJSON.map(normalizeIngredients);
+const sauceItems = saucesJSON.map(normalizeSauces);
+const sizeItems = sizesJSON.map(normalizeSize);
+
+const getImage = (image) => {
+  // https://vitejs.dev/guide/assets.html#new-url-url-import-meta-url
+  return new URL(`../assets/img/${image}`, import.meta.url).href;
+};
 </script>
 
 <style lang="scss">
