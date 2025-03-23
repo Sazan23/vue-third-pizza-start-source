@@ -2,7 +2,6 @@
   <div class="content__dough">
     <div class="sheet">
       <h2 class="title title--small sheet__title">Выберите тесто</h2>
-
       <div class="sheet__content">
         <label
           v-for="doughType in items"
@@ -18,7 +17,6 @@
             @input="emit('update:modelValue', doughType.value)"
           />
           <img :src="getImage(doughType.image)" :alt="doughType.name" />
-
           <b>{{ doughType.name }}</b>
           <span>{{ doughType.description }}</span>
         </label>
@@ -59,7 +57,6 @@ const getImage = (image) => {
 
 .dough__input {
   position: relative;
-
   margin-right: 8%;
   margin-bottom: 20px;
   padding-left: 50px;
@@ -68,12 +65,9 @@ const getImage = (image) => {
 
   img {
     @include p_center-v;
-
     width: 36px;
     height: 36px;
-
     transition: 0.3s;
-
     border-radius: 50%;
   }
 

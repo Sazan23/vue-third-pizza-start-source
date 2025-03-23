@@ -2,7 +2,6 @@
   <div class="content__diameter">
     <div class="sheet">
       <h2 class="title title--small sheet__title">Выберите размер</h2>
-
       <div class="sheet__content">
         <label
           v-for="sizeType in items"
@@ -60,20 +59,14 @@ const emit = defineEmits(["update:modelValue"]);
 
   span {
     @include r-s16-h19;
-
     position: relative;
-
     padding-left: 46px;
-
     &::before {
       @include p_center_v;
-
       width: 36px;
       height: 36px;
-
       content: "";
       transition: 0.3s;
-
       border-radius: 50%;
       background-color: $green-100;
       background-image: url("@/assets/img/diameter.svg");

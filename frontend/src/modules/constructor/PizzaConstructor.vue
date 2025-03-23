@@ -1,6 +1,6 @@
 <template>
   <div class="content__constructor">
-    <app-drop @drop="emit('drop', $event.value)">
+    <AppDrop @drop="emit('drop', $event.value)">
       <div class="pizza" :class="`pizza--foundation--${dough}-${sauce}`">
         <div class="pizza__wrapper">
           <div
@@ -15,7 +15,7 @@
           />
         </div>
       </div>
-    </app-drop>
+    </AppDrop>
   </div>
 </template>
 
