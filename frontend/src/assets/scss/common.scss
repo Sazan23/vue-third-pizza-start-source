@@ -9,7 +9,6 @@
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
-
   width: 920px;
   margin: 0 auto;
   padding-right: 2.12%;
@@ -19,7 +18,6 @@
 
 .sheet {
   padding-top: 15px;
-
   border-radius: 8px;
   background-color: $white;
   box-shadow: $shadow-light;
@@ -34,12 +32,10 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-
   margin-top: 8px;
   padding-top: 18px;
   padding-right: 18px;
   padding-left: 18px;
-
   border-top: 1px solid rgba($green-500, 0.1);
 }
 
@@ -47,13 +43,10 @@
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-
   color: $black;
-
   &--big {
     @include b-s36-h42;
   }
-
   &--small {
     @include b-s18-h21;
   }
@@ -64,23 +57,16 @@
 
   span {
     @include r-s16-h19;
-
     position: relative;
-
     padding-left: 28px;
-
     &:before {
       @include p_center-v;
-
       display: block;
-
       box-sizing: border-box;
       width: 20px;
       height: 20px;
-
       content: "";
       transition: 0.3s;
-
       border: 1px solid $purple-400;
       border-radius: 50%;
       background-color: $white;
@@ -97,13 +83,11 @@
 
   input {
     display: none;
-
     &:checked + span {
       &:before {
         border: 6px solid $green-500;
       }
     }
-
     &:disabled {
       & + span {
         &:before {
@@ -111,7 +95,6 @@
           background-color: $silver-200;
         }
       }
-
       &:checked + span {
         &:before {
           border: 6px solid $purple-400;
@@ -123,25 +106,20 @@
 
 .button {
   $bl: &;
-
   @include b-s18-h21;
   font-family: inherit;
   display: block;
-
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-
   cursor: pointer;
   transition: 0.3s;
   text-align: center;
-
   color: $white;
   border: none;
   border-radius: 8px;
   outline: none;
   box-shadow: $shadow-medium;
-
   background-color: $green-500;
 
   &:hover:not(:active):not(:disabled) {
@@ -232,30 +210,23 @@
 
   span {
     @include r-s14-h16;
-
     display: block;
-
     margin-bottom: 4px;
   }
 
   input {
     @include r-s16-h19;
-
     display: block;
-
     box-sizing: border-box;
     width: 100%;
     margin: 0;
     padding: 8px 16px;
-
     transition: 0.3s;
-
     color: $black;
     border: 1px solid $purple-400;
     border-radius: 8px;
     outline: none;
     background-color: $white;
-
     font-family: inherit;
 
     &:focus {
@@ -275,9 +246,7 @@
 
     span {
       @include b-s16-h19;
-
       margin-right: 16px;
-
       white-space: nowrap;
     }
   }
@@ -286,4 +255,60 @@
 .container {
   width: 770px;
   margin: 0 auto;
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  color: $black;
+  border-radius: 50%;
+  outline: none;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 25px;
+    height: 2px;
+    content: "";
+    border-radius: 2px;
+    background-color: $black;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  &:focus {
+    &::before,
+    &::after {
+      background-color: $orange-100;
+    }
+  }
+
+  &--white {
+    &::before,
+    &::after {
+      background-color: $white;
+    }
+  }
 }

@@ -1,7 +1,7 @@
 export const routes = [
   {
     path: "",
-    name: "/home",
+    name: "home",
     component: () => import("@/views/HomeView.vue"),
     meta: { layout: "DefaultLayout" },
   },
@@ -16,6 +16,12 @@ export const routes = [
     name: "cart",
     component: () => import("@/views/CartView.vue"),
     meta: { layout: "DefaultLayout" },
+  },
+  {
+    path: "/success",
+    name: "success",
+    component: () => import("@/views/SuccessView.vue"),
+    meta: { layout: "SimpleLayout" },
   },
   {
     path: "/user",
