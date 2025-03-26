@@ -18,7 +18,6 @@
           />
         </label>
       </div>
-
       <div class="sign-form__input">
         <label class="input">
           <span>Пароль</span>
@@ -48,18 +47,14 @@ const password = ref("");
 
 .sign-form {
   @include pf_center-all;
-
   z-index: 10;
-
   display: block;
-
   box-sizing: border-box;
   width: 455px;
   padding-top: 146px;
   padding-right: 32px;
   padding-bottom: 32px;
   padding-left: 32px;
-
   background: $white url("@/assets/img/popup.svg") no-repeat center top;
   box-shadow: $shadow-light;
 
@@ -71,7 +66,6 @@ const password = ref("");
 
 .sign-form__title {
   margin-bottom: 24px;
-
   text-align: center;
 }
 
@@ -83,14 +77,11 @@ const password = ref("");
   position: absolute;
   top: 16px;
   right: 16px;
-
   width: 25px;
   height: 25px;
-
   cursor: pointer;
   transition: 0.3s;
   text-decoration: none;
-
   color: $black;
   border-radius: 50%;
   outline: none;
@@ -100,12 +91,9 @@ const password = ref("");
     position: absolute;
     top: 50%;
     left: 50%;
-
     width: 25px;
     height: 2px;
-
     content: "";
-
     border-radius: 2px;
     background-color: $black;
   }

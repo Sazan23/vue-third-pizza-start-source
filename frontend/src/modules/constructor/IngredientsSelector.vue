@@ -1,14 +1,13 @@
 <template>
   <div class="ingredients__filling">
     <p>Начинка:</p>
-
     <ul class="ingredients__list">
       <li
         v-for="ingredientType in items"
         :key="ingredientType.id"
         class="ingredients__item"
       >
-        <app-drag
+        <AppDrag
           :data-transfer="ingredientType"
           :draggable="getValue(ingredientType.value) < MAX_INGREDIENT_COUNT"
         >
@@ -19,9 +18,8 @@
             />
             {{ ingredientType.name }}
           </div>
-        </app-drag>
-
-        <app-counter
+        </AppDrag>
+        <AppCounter
           class="ingredients__counter"
           :value="getValue(ingredientType.value)"
           :min="0"
@@ -63,10 +61,6 @@ const setValue = (ingredient, count) => {
   emit("update", ingredient, Number(count));
 };
 
-const decrementValue = (ingredient) => {
-  setValue(ingredient, getValue(ingredient) - 1);
-};
-
 const incrementValue = (ingredient) => {
   setValue(ingredient, getValue(ingredient) + 1);
 };
@@ -89,7 +83,6 @@ const getImage = (image) => {
 
   p {
     @include r-s16-h19;
-
     margin-top: 0;
     margin-bottom: 16px;
   }
@@ -97,7 +90,6 @@ const getImage = (image) => {
 
 .ingredients__list {
   @include clear-list;
-
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -118,24 +110,17 @@ const getImage = (image) => {
 
 .filling {
   @include r-s14-h16;
-
   position: relative;
-
   display: block;
-
   padding-left: 36px;
 
   img {
     @include p_center-v;
-
     display: block;
-
     width: 32px;
     height: 32px;
-
     box-sizing: border-box;
     padding: 4px;
-
     border-radius: 50%;
   }
 }

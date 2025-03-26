@@ -3,21 +3,16 @@
     <form action="#" method="post">
       <div class="content__wrapper">
         <h1 class="title title--big">Конструктор пиццы</h1>
-
-        <dough-selector v-model="pizza.dough" :items="doughItems" />
-
-        <diameter-selector v-model="pizza.size" :items="sizeItems" />
-
+        <DoughSelector v-model="pizza.dough" :items="doughItems" />
+        <DiameterSelector v-model="pizza.size" :items="sizeItems" />
         <div class="content__ingredients">
           <div class="sheet">
             <h2 class="title title--small sheet__title">
               Выберите ингредиенты
             </h2>
-
             <div class="sheet__content ingredients">
-              <sauce-selector v-model="pizza.sauce" :items="sauceItems" />
-
-              <ingredients-selector
+              <SauceSelector v-model="pizza.sauce" :items="sauceItems" />
+              <IngredientsSelector
                 :values="pizza.ingredients"
                 :items="ingredientItems"
                 @update="updateIngredientAmount"
@@ -25,7 +20,6 @@
             </div>
           </div>
         </div>
-
         <div class="content__pizza">
           <label class="input">
             <span class="visually-hidden">Название пиццы</span>
@@ -36,14 +30,12 @@
               placeholder="Введите название пиццы"
             />
           </label>
-
-          <pizza-constructor
+          <PizzaConstructor
             :dough="pizza.dough"
             :sauce="pizza.sauce"
             :ingredients="pizza.ingredients"
             @drop="addIngredient"
           />
-
           <div class="content__result">
             <p>Итого: {{ price }} ₽</p>
             <button type="button" class="button" :disabled="disableSubmit">
@@ -148,12 +140,10 @@ const updateIngredientAmount = (ingredient, count) => {
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin-top: 25px;
 
   p {
     @include b-s24-h28;
-
     margin: 0;
   }
 

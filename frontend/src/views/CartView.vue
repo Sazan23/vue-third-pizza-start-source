@@ -5,11 +5,6 @@
         <div class="cart__title">
           <h1 class="title title--big">Корзина</h1>
         </div>
-
-        <!-- <div class="sheet cart__empty">
-          <p>В корзине нет ни одного товара</p>
-        </div> -->
-
         <ul class="cart-list sheet">
           <li class="cart-list__item">
             <div class="product cart-list__product">
@@ -29,18 +24,15 @@
                 </ul>
               </div>
             </div>
-
-            <app-counter
+            <AppCounter
               class="cart-list__counter"
               :value="value"
               accent
               @input="value = $event"
             />
-
             <div class="cart-list__price">
               <b>782 ₽</b>
             </div>
-
             <div class="cart-list__button">
               <button type="button" class="cart-list__edit">Изменить</button>
             </div>
@@ -66,24 +58,20 @@
                 </ul>
               </div>
             </div>
-
-            <app-counter
+            <AppCounter
               class="cart-list__counter"
               :value="value"
               accent
               @input="value = $event"
             />
-
             <div class="cart-list__price">
               <b>782 ₽</b>
             </div>
-
             <div class="cart-list__button">
               <button type="button" class="cart-list__edit">Изменить</button>
             </div>
           </li>
         </ul>
-
         <div class="cart__additional">
           <ul class="additional-list">
             <li class="additional-list__item sheet">
@@ -96,15 +84,13 @@
                 />
                 <span>Coca-Cola 0,5 литра</span>
               </p>
-
               <div class="additional-list__wrapper">
-                <app-counter
+                <AppCounter
                   class="additional-list__counter"
                   :value="value"
                   accent
                   @input="value = $event"
                 />
-
                 <div class="additional-list__price">
                   <b>× 56 ₽</b>
                 </div>
@@ -120,15 +106,13 @@
                 />
                 <span>Острый соус</span>
               </p>
-
               <div class="additional-list__wrapper">
-                <app-counter
+                <AppCounter
                   class="additional-list__counter"
                   :value="value"
                   accent
                   @input="value = $event"
                 />
-
                 <div class="additional-list__price">
                   <b>× 30 ₽</b>
                 </div>
@@ -144,15 +128,13 @@
                 />
                 <span>Картошка из печи</span>
               </p>
-
               <div class="additional-list__wrapper">
-                <app-counter
+                <AppCounter
                   class="additional-list__counter"
                   :value="value"
                   accent
                   @input="value = $event"
                 />
-
                 <div class="additional-list__price">
                   <b>× 56 ₽</b>
                 </div>
@@ -160,41 +142,34 @@
             </li>
           </ul>
         </div>
-
         <div class="cart__form">
           <div class="cart-form">
             <label class="cart-form__select">
               <span class="cart-form__label">Получение заказа:</span>
-
               <select name="test" class="select">
                 <option value="1">Заберу сам</option>
                 <option value="2">Новый адрес</option>
                 <option value="3">Дом</option>
               </select>
             </label>
-
             <label class="input input--big-label">
               <span>Контактный телефон:</span>
               <input type="text" name="tel" placeholder="+7 999-999-99-99" />
             </label>
-
             <div class="cart-form__address">
               <span class="cart-form__label">Новый адрес:</span>
-
               <div class="cart-form__input">
                 <label class="input">
                   <span>Улица*</span>
                   <input type="text" name="street" />
                 </label>
               </div>
-
               <div class="cart-form__input cart-form__input--small">
                 <label class="input">
                   <span>Дом*</span>
                   <input type="text" name="house" />
                 </label>
               </div>
-
               <div class="cart-form__input cart-form__input--small">
                 <label class="input">
                   <span>Квартира</span>
@@ -206,7 +181,6 @@
         </div>
       </div>
     </main>
-
     <section class="footer">
       <div class="footer__more">
         <router-link
@@ -222,7 +196,6 @@
       <div class="footer__price">
         <b>Итого: 2 228 ₽</b>
       </div>
-
       <div class="footer__submit">
         <button type="submit" class="button">Оформить заказ</button>
       </div>
@@ -273,7 +246,6 @@ const getImage = (image) => {
 .cart-form__select {
   display: flex;
   align-items: center;
-
   margin-right: auto;
 
   span {
@@ -283,21 +255,18 @@ const getImage = (image) => {
 
 .cart-form__label {
   @include b-s16-h19;
-
   white-space: nowrap;
 }
 
 .cart-form__address {
   display: flex;
   align-items: center;
-
   width: 100%;
   margin-top: 20px;
 }
 
 .cart-form__input {
   flex-grow: 1;
-
   margin-bottom: 20px;
   margin-left: 16px;
 
@@ -308,32 +277,27 @@ const getImage = (image) => {
 
 .cart-list {
   @include clear-list;
-
   padding: 15px 0;
 }
 
 .cart-list__item {
   display: flex;
   align-items: flex-start;
-
   margin-bottom: 15px;
   padding-right: 15px;
   padding-bottom: 15px;
   padding-left: 15px;
-
   border-bottom: 1px solid rgba($green-500, 0.1);
 
   &:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
-
     border-bottom: none;
   }
 }
 
 .cart-list__product {
   flex-grow: 1;
-
   margin-right: auto;
 }
 
@@ -347,7 +311,6 @@ const getImage = (image) => {
   min-width: 100px;
   margin-right: 36px;
   margin-left: 10px;
-
   text-align: right;
 
   b {
@@ -357,10 +320,8 @@ const getImage = (image) => {
 
 .cart-list__edit {
   @include l-s11-h13;
-
   cursor: pointer;
   transition: 0.3s;
-
   border: none;
   outline: none;
   background-color: transparent;
@@ -388,7 +349,6 @@ const getImage = (image) => {
 
   h2 {
     @include b-s18-h21;
-
     margin-top: 0;
     margin-bottom: 10px;
   }
@@ -402,10 +362,8 @@ const getImage = (image) => {
 .footer {
   display: flex;
   align-items: center;
-
   margin-top: auto;
   padding: 25px 2.12%;
-
   background-color: rgba($green-500, 0.1);
 }
 
@@ -421,13 +379,11 @@ const getImage = (image) => {
 
 .footer__text {
   @include l-s11-h13;
-
   color: rgba($black, 0.5);
 }
 
 .footer__price {
   @include b-s24-h28;
-
   margin-right: 12px;
   margin-left: auto;
 }
@@ -440,7 +396,6 @@ const getImage = (image) => {
 
 .additional-list {
   @include clear-list;
-
   display: flex;
   flex-wrap: wrap;
 }
@@ -448,7 +403,6 @@ const getImage = (image) => {
 .additional-list__description {
   display: flex;
   align-items: flex-start;
-
   margin: 0;
   margin-bottom: 8px;
 }
@@ -457,7 +411,6 @@ const getImage = (image) => {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-
   width: 200px;
   margin-right: 15px;
   margin-bottom: 15px;
@@ -471,9 +424,7 @@ const getImage = (image) => {
 
   span {
     @include b-s14-h16;
-
     display: inline;
-
     width: 100px;
     margin-right: 15px;
   }
@@ -482,14 +433,12 @@ const getImage = (image) => {
 .additional-list__wrapper {
   display: flex;
   align-items: center;
-
   box-sizing: border-box;
   width: 100%;
   margin-top: auto;
   padding-top: 18px;
   padding-right: 15px;
   padding-left: 15px;
-
   border-top: 1px solid rgba($green-500, 0.1);
 }
 
@@ -504,16 +453,12 @@ const getImage = (image) => {
 
 .select {
   @include r-s16-h19;
-
   display: block;
-
   margin: 0;
   padding: 8px 16px;
   padding-right: 30px;
-
   cursor: pointer;
   transition: 0.3s;
-
   color: $black;
   border: 1px solid $purple-400;
   border-radius: 8px;
@@ -522,9 +467,7 @@ const getImage = (image) => {
   background-image: url("@/assets/img/select.svg");
   background-repeat: no-repeat;
   background-position: right 8px center;
-
   font-family: inherit;
-
   appearance: none;
 
   &:hover {

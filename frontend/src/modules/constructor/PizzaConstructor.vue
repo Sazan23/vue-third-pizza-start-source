@@ -1,6 +1,6 @@
 <template>
   <div class="content__constructor">
-    <app-drop @drop="emit('drop', $event.value)">
+    <AppDrop @drop="emit('drop', $event.value)">
       <div class="pizza" :class="`pizza--foundation--${dough}-${sauce}`">
         <div class="pizza__wrapper">
           <div
@@ -15,7 +15,7 @@
           />
         </div>
       </div>
-    </app-drop>
+    </AppDrop>
   </div>
 </template>
 
@@ -82,12 +82,9 @@ const pizzaIngredients = computed(() => {
   position: absolute;
   top: 0;
   left: 0;
-
   display: block;
-
   width: 100%;
   height: 100%;
-
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
@@ -95,23 +92,18 @@ const pizzaIngredients = computed(() => {
   &::before,
   &::after {
     display: none;
-
     position: absolute;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
-
     content: "";
-
     background-image: inherit;
   }
 
   &--second {
     &::before {
       display: block;
-
       transform: rotate(45deg);
     }
   }
@@ -119,13 +111,11 @@ const pizzaIngredients = computed(() => {
   &--third {
     &::before {
       display: block;
-
       transform: rotate(45deg);
     }
 
     &::after {
       display: block;
-
       transform: rotate(-45deg);
     }
   }
@@ -223,12 +213,9 @@ const pizzaIngredients = computed(() => {
 
 .pizza {
   position: relative;
-
   display: block;
-
   box-sizing: border-box;
   width: 100%;
-
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
