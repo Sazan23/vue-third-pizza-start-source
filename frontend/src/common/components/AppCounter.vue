@@ -63,8 +63,11 @@ const emit = defineEmits(["input"]);
 .counter__button {
   $el: &;
   $size_icon: 50%;
+
   position: relative;
+
   display: block;
+
   width: 16px;
   height: 16px;
   margin: 0;
@@ -72,16 +75,22 @@ const emit = defineEmits(["input"]);
 
   cursor: pointer;
   transition: 0.3s;
+
   border: none;
   border-radius: 50%;
   outline: none;
+
   &--minus {
     background-color: $purple-100;
+
     &::before {
       @include p_center-all;
+
       width: $size_icon;
       height: 2px;
+
       content: "";
+
       border-radius: 2px;
       background-color: $black;
     }
@@ -100,6 +109,7 @@ const emit = defineEmits(["input"]);
 
     &:disabled {
       cursor: default;
+
       &::before {
         opacity: 0.1;
       }
@@ -111,19 +121,25 @@ const emit = defineEmits(["input"]);
 
     &::before {
       @include p_center-all;
+
       width: $size_icon;
       height: 2px;
+
       content: "";
+
       border-radius: 2px;
       background-color: $white;
     }
 
     &::after {
       @include p_center-all;
+
       width: $size_icon;
       height: 2px;
+
       content: "";
       transform: translate(-50%, -50%) rotate(90deg);
+
       border-radius: 2px;
       background-color: $white;
     }
@@ -142,6 +158,7 @@ const emit = defineEmits(["input"]);
 
     &:disabled {
       cursor: default;
+
       opacity: 0.3;
     }
   }
@@ -161,11 +178,14 @@ const emit = defineEmits(["input"]);
 
 .counter__input {
   @include r-s14-h16;
+
   box-sizing: border-box;
   width: 22px;
   margin: 0;
   padding: 0 3px;
+
   text-align: center;
+
   color: $black;
   border: none;
   border-radius: 10px;

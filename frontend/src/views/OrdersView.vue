@@ -2,14 +2,17 @@
   <div class="layout__title">
     <h1 class="title title--big">История заказов</h1>
   </div>
+
   <section class="sheet order">
     <div class="order__wrapper">
       <div class="order__number">
         <b>Заказ #11199929</b>
       </div>
+
       <div class="order__sum">
         <span>Сумма заказа: 1 564 ₽</span>
       </div>
+
       <div class="order__button">
         <button type="button" class="button button--border">Удалить</button>
       </div>
@@ -17,6 +20,7 @@
         <button type="button" class="button">Повторить</button>
       </div>
     </div>
+
     <ul class="order__list">
       <li class="order__item">
         <div class="product">
@@ -38,6 +42,7 @@
             </ul>
           </div>
         </div>
+
         <p class="order__price">782 ₽</p>
       </li>
       <li class="order__item">
@@ -58,9 +63,11 @@
             </ul>
           </div>
         </div>
+
         <p class="order__price">2х782 ₽</p>
       </li>
     </ul>
+
     <ul class="order__additional">
       <li>
         <img
@@ -96,18 +103,22 @@
         </p>
       </li>
     </ul>
+
     <p class="order__address">
       Адрес доставки: Тест (или если адрес новый - писать целиком)
     </p>
   </section>
+
   <section class="sheet order">
     <div class="order__wrapper">
       <div class="order__number">
         <b>Заказ #11199929</b>
       </div>
+
       <div class="order__sum">
         <span>Сумма заказа: 1 564 ₽</span>
       </div>
+
       <div class="order__button">
         <button type="button" class="button button--border">Удалить</button>
       </div>
@@ -115,6 +126,7 @@
         <button type="button" class="button">Повторить</button>
       </div>
     </div>
+
     <ul class="order__list">
       <li class="order__item">
         <div class="product">
@@ -134,6 +146,7 @@
             </p>
           </div>
         </div>
+
         <p class="order__price">782 ₽</p>
       </li>
       <li class="order__item">
@@ -154,9 +167,11 @@
             </p>
           </div>
         </div>
+
         <p class="order__price">2х782 ₽</p>
       </li>
     </ul>
+
     <ul class="order__additional">
       <li>
         <img
@@ -195,6 +210,7 @@
         </p>
       </li>
     </ul>
+
     <p class="order__address">
       Адрес доставки: Тест (или если адрес новый - писать целиком)
     </p>
@@ -209,6 +225,7 @@ const getImage = (image) => {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/ds-system/ds.scss";
+@import "@/assets/scss/mixins/mixins.scss";
 
 .order {
   margin-bottom: 32px;
@@ -218,7 +235,9 @@ const getImage = (image) => {
 .order__wrapper {
   display: flex;
   align-items: center;
+
   padding: 6px 16px;
+
   border-bottom: 1px solid rgba($green-500, 0.1);
 
   b {
@@ -248,9 +267,11 @@ const getImage = (image) => {
 
 .order__list {
   @include clear-list;
+
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
+
   margin-top: 24px;
   padding-right: 10px;
   padding-left: 10px;
@@ -258,6 +279,7 @@ const getImage = (image) => {
 
 .order__item {
   display: flex;
+
   width: 310px;
   margin-right: 33px;
   margin-bottom: 32px;
@@ -265,20 +287,25 @@ const getImage = (image) => {
 
 .order__price {
   @include b-s16-h19;
+
   margin: 0;
+
   white-space: nowrap;
 }
 
 .order__additional {
   @include clear-list;
+
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
+
   margin-bottom: 5px;
   padding-left: 80px;
 
   li {
     @include b-s11-h16;
+
     width: 130px;
     margin-right: 24px;
     margin-bottom: 10px;
@@ -290,6 +317,7 @@ const getImage = (image) => {
 
   img {
     float: left;
+
     margin-right: 7px;
   }
 
@@ -300,8 +328,10 @@ const getImage = (image) => {
 
 .order__address {
   @include l-s11-h13;
+
   margin: 0;
   padding: 16px 10px;
+
   border-top: 1px solid rgba($green-500, 0.1);
 }
 
@@ -315,6 +345,7 @@ const getImage = (image) => {
 
   h2 {
     @include b-s18-h21;
+
     margin-top: 0;
     margin-bottom: 10px;
   }

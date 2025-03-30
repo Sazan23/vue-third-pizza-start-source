@@ -16,6 +16,7 @@
         Мои данные
       </router-link>
     </template>
+
     <router-view />
   </sidebar-layout>
 </template>

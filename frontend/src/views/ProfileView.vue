@@ -2,6 +2,7 @@
   <div class="layout__title">
     <h1 class="title title--big">Мои данные</h1>
   </div>
+
   <div class="user">
     <picture>
       <source
@@ -24,6 +25,7 @@
     </div>
     <p class="user__phone">Контактный телефон: <span>+7 999-999-99-99</span></p>
   </div>
+
   <div class="layout__address">
     <div class="sheet address-form">
       <div class="address-form__header">
@@ -38,6 +40,7 @@
       <small>Позвоните, пожалуйста, от проходной</small>
     </div>
   </div>
+
   <div class="layout__address">
     <form
       action="test.html"
@@ -103,6 +106,7 @@
           </label>
         </div>
       </div>
+
       <div class="address-form__buttons">
         <button type="button" class="button button--transparent">
           Удалить
@@ -111,6 +115,7 @@
       </div>
     </form>
   </div>
+
   <div class="layout__button">
     <button type="button" class="button button--border">
       Добавить новый адрес
@@ -127,27 +132,32 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+
   margin-bottom: 33px;
 }
 
 .user__name {
   @include b-s20-h23;
+
   margin-left: 30px;
 
   span {
     display: inline-block;
+
     vertical-align: middle;
   }
 }
 
 .user__button {
   display: inline-block;
+
   cursor: pointer;
   vertical-align: middle;
 }
 
 .user__phone {
   @include b-s16-h19;
+
   width: 100%;
   margin-top: 20px;
 
@@ -158,7 +168,9 @@
 
 .address-form {
   $bl: &;
+
   position: relative;
+
   padding-top: 0;
   padding-bottom: 26px;
 
@@ -170,6 +182,7 @@
 
   p {
     @include r-s16-h19;
+
     margin-top: 0;
     margin-bottom: 16px;
     padding: 0 16px;
@@ -177,7 +190,9 @@
 
   small {
     @include l-s11-h13;
+
     display: block;
+
     padding: 0 16px;
   }
 }
@@ -186,6 +201,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
   width: 80%;
   padding: 16px;
 }
@@ -208,6 +224,7 @@
 .address-form__buttons {
   display: flex;
   justify-content: flex-end;
+
   padding: 0 16px;
 
   button {
@@ -218,20 +235,26 @@
 
 .address-form__header {
   @include b-s14-h16;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   margin-bottom: 21px;
   padding: 10px 16px;
+
   border-bottom: 1px solid rgba($green-500, 0.1);
 }
 
 .icon {
   display: block;
   overflow: hidden;
+
   width: 32px;
   height: 32px;
+
   transition: 0.3s;
+
   border: none;
   border-radius: 50%;
   outline: none;

@@ -1,31 +1,29 @@
 <template>
   <div class="ingredients__filling">
     <p>Начинка:</p>
+
     <ul class="ingredients__list">
       <li
-        v-for="ingredientType in items"
-        :key="ingredientType.id"
+        v-for="ingredient in items"
+        :key="ingredient.id"
         class="ingredients__item"
       >
-        <AppDrag
-          :data-transfer="ingredientType"
-          :draggable="getValue(ingredientType.value) < MAX_INGREDIENT_COUNT"
+        <app-drag
+          :data-transfer="ingredient"
+          :draggable="values[ingredient.id] < MAX_INGREDIENT_COUNT"
         >
           <div class="filling">
-            <img
-              :src="getImage(ingredientType.image)"
-              :alt="ingredientType.name"
-            />
-            {{ ingredientType.name }}
+            <img :src="getImage(ingredient.image)" :alt="ingredient.name" />
+            {{ ingredient.name }}
           </div>
-        </AppDrag>
-        <AppCounter
+        </app-drag>
+
+        <app-counter
           class="ingredients__counter"
-          :value="getValue(ingredientType.value)"
+          :value="values[ingredient.id]"
           :min="0"
           :max="MAX_INGREDIENT_COUNT"
-          @input="inputValue(ingredientType.value, $event)"
-          @increment="incrementValue(ingredientType.value)"
+          @input="inputValue(ingredient.id, $event)"
         />
       </li>
     </ul>
@@ -33,12 +31,11 @@
 </template>
 
 <script setup>
-import { toRef } from "vue";
 import AppDrag from "@/common/components/AppDrag.vue";
 import { MAX_INGREDIENT_COUNT } from "@/common/constants";
 import AppCounter from "@/common/components/AppCounter.vue";
 
-const props = defineProps({
+defineProps({
   values: {
     type: Object,
     default: () => ({}),
@@ -51,22 +48,12 @@ const props = defineProps({
 
 const emit = defineEmits(["update"]);
 
-const values = toRef(props, "values");
-
-const getValue = (ingredient) => {
-  return values.value[ingredient] ?? 0;
-};
-
 const setValue = (ingredient, count) => {
   emit("update", ingredient, Number(count));
 };
 
-const incrementValue = (ingredient) => {
-  setValue(ingredient, getValue(ingredient) + 1);
-};
-
 const inputValue = (ingredient, count) => {
-  return setValue(ingredient, Math.min(MAX_INGREDIENT_COUNT, Number(count)));
+  setValue(ingredient, Math.min(MAX_INGREDIENT_COUNT, Number(count)));
 };
 
 const getImage = (image) => {
@@ -83,6 +70,7 @@ const getImage = (image) => {
 
   p {
     @include r-s16-h19;
+
     margin-top: 0;
     margin-bottom: 16px;
   }
@@ -90,6 +78,7 @@ const getImage = (image) => {
 
 .ingredients__list {
   @include clear-list;
+
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -110,17 +99,24 @@ const getImage = (image) => {
 
 .filling {
   @include r-s14-h16;
+
   position: relative;
+
   display: block;
+
   padding-left: 36px;
 
   img {
     @include p_center-v;
+
     display: block;
+
     width: 32px;
     height: 32px;
+
     box-sizing: border-box;
     padding: 4px;
+
     border-radius: 50%;
   }
 }
