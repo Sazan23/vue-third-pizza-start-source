@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 import { pizzaPrice } from "@/common/helpers/pizza-price";
 import { useDataStore } from "@/stores/data";
+import resources from "@/services";
+import { useAuthStore } from "@/stores/auth";
 
 export const useCartStore = defineStore("cart", {
   state: () => ({
@@ -20,7 +22,7 @@ export const useCartStore = defineStore("cart", {
 
       return state.pizzas.map((pizza) => {
         const pizzaIngredientsIds = pizza.ingredients.map(
-          (i) => i.ingredientId
+          (i) => i.ingredientId,
         );
 
         return {
@@ -30,7 +32,7 @@ export const useCartStore = defineStore("cart", {
           size: data.sizes.find((i) => i.id === pizza.sizeId),
           sauce: data.sauces.find((i) => i.id === pizza.sauceId),
           ingredients: data.ingredients.filter((i) =>
-            pizzaIngredientsIds.includes(i.id)
+            pizzaIngredientsIds.includes(i.id),
           ),
           price: pizzaPrice(pizza),
         };
@@ -122,6 +124,48 @@ export const useCartStore = defineStore("cart", {
     },
     setComment(comment) {
       this.address.street = comment;
+    },
+    reset() {
+      this.phone = "";
+      this.address = {
+        street: "",
+        building: "",
+        flat: "",
+        comment: "",
+      };
+      this.pizzas = [];
+      this.misc = [];
+    },
+    load(order) {
+      this.phone = order.phone;
+      this.pizzas =
+        order?.orderPizzas?.map((pizza) => ({
+          name: pizza.name,
+          sauceId: pizza.sauce.id,
+          doughId: pizza.dough.id,
+          sizeId: pizza.size.id,
+          quantity: pizza.quantity,
+          ingredients: pizza.ingredients.map((ingredient) => ({
+            ingredientId: ingredient.id,
+            quantity: ingredient.quantity,
+          })),
+        })) ?? [];
+      this.misc =
+        order?.orderMisc?.map((misc) => ({
+          miscId: misc.id,
+          quantity: misc.quantity,
+        })) ?? [];
+    },
+    async publishOrder() {
+      const authStore = useAuthStore();
+
+      return await resources.order.createOrder({
+        userId: authStore.user?.id ?? null,
+        phone: this.phone,
+        address: this.address,
+        pizzas: this.pizzas,
+        misc: this.misc,
+      });
     },
   },
 });
