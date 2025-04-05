@@ -7,35 +7,38 @@
       <h1 class="title title--small">Авторизуйтесь на сайте</h1>
     </div>
     <form method="post" @submit.prevent="login">
-      <div class="sign-form__input">
-        <label class="input">
-          <span>E-mail</span>
-          <input
-            v-model="email"
-            type="email"
-            name="email"
-            placeholder="example@mail.ru"
-          />
-        </label>
-        <div class="sign-form__input-error">
-          {{ validations.email.error }}
+      <transition appear name="slide-fade">
+        <div class="sign-form__input">
+          <label class="input">
+            <span>E-mail</span>
+            <input
+              v-model="email"
+              type="email"
+              name="email"
+              placeholder="example@mail.ru"
+            />
+          </label>
+          <div class="sign-form__input-error">
+            {{ validations.email.error }}
+          </div>
         </div>
-      </div>
-
-      <div class="sign-form__input">
-        <label class="input">
-          <span>Пароль</span>
-          <input
-            v-model="password"
-            type="password"
-            name="pass"
-            placeholder="***********"
-          />
-        </label>
-        <div class="sign-form__input-error">
-          {{ validations.password.error }}
+      </transition> 
+      <transition appear name="slide-fade">
+        <div class="sign-form__input">
+          <label class="input">
+            <span>Пароль</span>
+            <input
+              v-model="password"
+              type="password"
+              name="pass"
+              placeholder="***********"
+            />
+          </label>
+          <div class="sign-form__input-error">
+            {{ validations.password.error }}
+          </div>
         </div>
-      </div>
+      </transition>
       <button type="submit" class="button">Авторизоваться</button>
 
       <div class="server-error">
@@ -88,7 +91,7 @@ watch(password, watchField("password"));
 const login = async () => {
   const isValid = validateFields(
     { email: email.value, password: password.value },
-    validations.value
+    validations.value,
   );
 
   if (!isValid) {
@@ -112,6 +115,15 @@ const login = async () => {
 <style lang="scss" scoped>
 @import "@/assets/scss/ds-system/ds.scss";
 @import "@/assets/scss/mixins/mixins.scss";
+
+.slide-fade-enter-active {
+  transition: all 0.8s ease-out;
+}
+
+.slide-fade-enter-from {
+  transform: translateX(90px);
+  opacity: 0;
+}
 
 .sign-form {
   @include pf_center-all;
