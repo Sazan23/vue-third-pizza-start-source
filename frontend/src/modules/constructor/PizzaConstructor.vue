@@ -3,16 +3,18 @@
     <app-drop @drop="emit('drop', $event.id)">
       <div class="pizza" :class="`pizza--foundation--${dough}-${sauce}`">
         <div class="pizza__wrapper">
-          <div
-            v-for="item in ingredients"
-            :key="item.id"
-            class="pizza__filling"
-            :class="[
-              `pizza__filling--${item.value}`,
-              item.quantity === TWO_INGREDIENTS && 'pizza__filling--second',
-              item.quantity === THREE_INGREDIENTS && 'pizza__filling--third',
-            ]"
-          />
+          <transition-group name="emerging">
+            <div
+              v-for="item in ingredients"
+              :key="item.id"
+              class="pizza__filling"
+              :class="[
+                `pizza__filling--${item.value}`,
+                item.quantity === TWO_INGREDIENTS && 'pizza__filling--second',
+                item.quantity === THREE_INGREDIENTS && 'pizza__filling--third',
+              ]"
+            />
+          </transition-group>
         </div>
       </div>
     </app-drop>
@@ -44,6 +46,18 @@ const emit = defineEmits(["drop"]);
 </script>
 
 <style lang="scss" scoped>
+.emerging-enter-active,
+.emerging-leave-active {
+  transition: all 0.5s ease;
+}
+
+.emerging-enter-from,
+.emerging-leave-to {
+  opacity: 0;
+  transform: scale(0);
+  transform: rotate(60deg);
+}
+
 .content__constructor {
   width: 315px;
   margin-top: 25px;
