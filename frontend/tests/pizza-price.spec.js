@@ -22,7 +22,6 @@ describe("pizzaPrice", () => {
 
   it("pizzaPrice calculates correctly", () => {
     const pizza = {
-      //id: 1,
       name: "Test Pizza",
       sizeId: 2,
       doughId: 1,
