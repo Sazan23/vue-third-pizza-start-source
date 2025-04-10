@@ -6,6 +6,7 @@ import mockSizes from "./mocks/sizes.json";
 describe("DiameterSelector component", () => {
   const mockItem = mockSizes[0];
 
+  // Группа тестов для проверки взаимодействия с компонентом
   describe("Component interaction", () => {
     // Тест проверяет, что компонент эмитит событие при выборе размера
     it("Should emit when a size is selected", async () => {
@@ -29,15 +30,16 @@ describe("DiameterSelector component", () => {
         },
       });
 
-      // Симулируем клик по первому элементу
       const radioInput = wrapper.find('[data-test="radio-diameter--1"]');
       radioInput.trigger("click");
       await wrapper.vm.$nextTick();
 
-      // Проверяем, что modelValue обновилось корректно
       expect(wrapper.props("modelValue")).toBe(1);
     });
+  });
 
+  // Группа тестов для проверки структуры DOM
+  describe("Dom Structure", () => {
     // Тест проверяет, что все размеры из items корректно отображаются
     it("Should render all sizes passed in items prop", () => {
       const wrapper = mount(DiameterSelector, {
@@ -47,27 +49,10 @@ describe("DiameterSelector component", () => {
         },
       });
 
-      // Проверяем, что количество радиокнопок соответствует количеству элементов в items
       const radioButtons = wrapper.findAll('[data-test^="radio-diameter--"]');
       expect(radioButtons.length).toBe(mockSizes.length);
     });
 
-    // Тест проверяет, что компонент корректно обрабатывает некорректное значение modelValue
-    it("Should handle invalid modelValue gracefully", () => {
-      const wrapper = mount(DiameterSelector, {
-        props: {
-          modelValue: 999, // Некорректное значение, которого нет в items
-          items: mockSizes,
-        },
-      });
-
-      // Проверяем, что ни один элемент не выбран
-      const selectedInput = wrapper.find("input:checked");
-      expect(selectedInput.exists()).toBe(false);
-    });
-  });
-
-  describe("Dom Structure", () => {
     // Тест проверяет, что компонент рендерится корректно
     it("Should render the component correctly", () => {
       const wrapper = mount(DiameterSelector, {
@@ -77,12 +62,12 @@ describe("DiameterSelector component", () => {
         },
       });
 
-      // Проверяем, что компонент существует и структура DOM корректна
       expect(wrapper.exists()).toBe(true);
       expect(wrapper.html().includes("23 см")).toBe(true);
     });
   });
 
+  // Группа тестов для проверки пропсов
   describe("Props validation", () => {
     // Тест проверяет, что компонент получает корректные пропсы
     it("Should have correct props", () => {
@@ -95,6 +80,19 @@ describe("DiameterSelector component", () => {
 
       expect(wrapper.props("modelValue")).toBe(mockItem.id);
       expect(wrapper.props("items")).toEqual(mockSizes);
+    });
+
+    // Тест проверяет, что компонент корректно обрабатывает некорректное значение modelValue
+    it("Should handle invalid modelValue gracefully", () => {
+      const wrapper = mount(DiameterSelector, {
+        props: {
+          modelValue: 999,
+          items: mockSizes,
+        },
+      });
+
+      const selectedInput = wrapper.find("input:checked");
+      expect(selectedInput.exists()).toBe(false);
     });
   });
 });
