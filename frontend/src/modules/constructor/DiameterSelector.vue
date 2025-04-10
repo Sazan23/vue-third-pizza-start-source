@@ -16,6 +16,7 @@
             :value="sizeType.id"
             :checked="sizeType.id === modelValue"
             class="visually-hidden"
+            :data-test="`radio-diameter--${sizeType.id}`"
             @input="emit('update:modelValue', sizeType.id)"
           />
           <span>{{ sizeType.name }}</span>
