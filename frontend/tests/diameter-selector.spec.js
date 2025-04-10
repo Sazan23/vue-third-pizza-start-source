@@ -35,6 +35,20 @@ describe("DiameterSelector component", () => {
       // Verify that modelValue is updated correctly
       expect(wrapper.props("modelValue")).toBe(1);
     });
+
+    // Тест на рендеринг всех переданных размеров
+    it("Should render all sizes passed in items prop", () => {
+      const wrapper = mount(DiameterSelector, {
+        props: {
+          modelValue: mockItem.id,
+          items: mockSizes,
+        },
+      });
+
+      // Проверяем, что количество радиокнопок соответствует количеству элементов в items
+      const radioButtons = wrapper.findAll('[data-test^="radio-diameter--"]');
+      expect(radioButtons.length).toBe(mockSizes.length);
+    });
   });
 
   describe("Dom Structure", () => {
