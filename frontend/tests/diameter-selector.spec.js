@@ -60,4 +60,18 @@ describe("DiameterSelector component", () => {
       expect(wrapper.html().includes("23 см")).toBe(true);
     });
   });
+
+  describe("Props validation", () => {
+    it("Should have correct props", () => {
+      const wrapper = mount(DiameterSelector, {
+        props: {
+          modelValue: mockItem.id,
+          items: mockSizes,
+        },
+      });
+
+      expect(wrapper.props("modelValue")).toBe(mockItem.id);
+      expect(wrapper.props("items")).toEqual(mockSizes);
+    });
+  });
 });
