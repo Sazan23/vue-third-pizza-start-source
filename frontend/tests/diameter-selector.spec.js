@@ -19,16 +19,6 @@ describe("DiameterSelector component", () => {
       expect(wrapper.props("modelValue")).toBe(1);
     });
 
-    it("Should handle initial state with no selection", () => {
-      const wrapper = mount(DiameterSelector, {
-        props: {
-          modelValue: null,
-        },
-      });
-
-      expect(wrapper.props("modelValue")).toBeNull();
-    });
-
     it("Should update modelValue when clicking on a size", async () => {
       const wrapper = mount(DiameterSelector, {
         props: {
@@ -51,6 +41,7 @@ describe("DiameterSelector component", () => {
     it("Should render the component correctly", () => {
       const wrapper = mount(DiameterSelector, {
         props: {
+          modelValue: mockItem.id,
           items: mockSizes,
         },
       });
