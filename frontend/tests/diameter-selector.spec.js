@@ -7,6 +7,7 @@ describe("DiameterSelector component", () => {
   const mockItem = mockSizes[0];
 
   describe("Component interaction", () => {
+    // Тест проверяет, что компонент эмитит событие при выборе размера
     it("Should emit when a size is selected", async () => {
       const wrapper = mount(DiameterSelector, {
         props: {
@@ -19,6 +20,7 @@ describe("DiameterSelector component", () => {
       expect(wrapper.props("modelValue")).toBe(1);
     });
 
+    // Тест проверяет, что значение modelValue обновляется при клике на размер
     it("Should update modelValue when clicking on a size", async () => {
       const wrapper = mount(DiameterSelector, {
         props: {
@@ -27,16 +29,16 @@ describe("DiameterSelector component", () => {
         },
       });
 
-      // Simulate click on the first item
+      // Симулируем клик по первому элементу
       const radioInput = wrapper.find('[data-test="radio-diameter--1"]');
       radioInput.trigger("click");
       await wrapper.vm.$nextTick();
 
-      // Verify that modelValue is updated correctly
+      // Проверяем, что modelValue обновилось корректно
       expect(wrapper.props("modelValue")).toBe(1);
     });
 
-    // Тест на рендеринг всех переданных размеров
+    // Тест проверяет, что все размеры из items корректно отображаются
     it("Should render all sizes passed in items prop", () => {
       const wrapper = mount(DiameterSelector, {
         props: {
@@ -50,7 +52,7 @@ describe("DiameterSelector component", () => {
       expect(radioButtons.length).toBe(mockSizes.length);
     });
 
-    // Тест на обработку некорректных пропсов
+    // Тест проверяет, что компонент корректно обрабатывает некорректное значение modelValue
     it("Should handle invalid modelValue gracefully", () => {
       const wrapper = mount(DiameterSelector, {
         props: {
@@ -66,6 +68,7 @@ describe("DiameterSelector component", () => {
   });
 
   describe("Dom Structure", () => {
+    // Тест проверяет, что компонент рендерится корректно
     it("Should render the component correctly", () => {
       const wrapper = mount(DiameterSelector, {
         props: {
@@ -74,13 +77,14 @@ describe("DiameterSelector component", () => {
         },
       });
 
-      // Verify that component is rendered and structure exists
+      // Проверяем, что компонент существует и структура DOM корректна
       expect(wrapper.exists()).toBe(true);
       expect(wrapper.html().includes("23 см")).toBe(true);
     });
   });
 
   describe("Props validation", () => {
+    // Тест проверяет, что компонент получает корректные пропсы
     it("Should have correct props", () => {
       const wrapper = mount(DiameterSelector, {
         props: {
