@@ -49,6 +49,20 @@ describe("DiameterSelector component", () => {
       const radioButtons = wrapper.findAll('[data-test^="radio-diameter--"]');
       expect(radioButtons.length).toBe(mockSizes.length);
     });
+
+    // Тест на обработку некорректных пропсов
+    it("Should handle invalid modelValue gracefully", () => {
+      const wrapper = mount(DiameterSelector, {
+        props: {
+          modelValue: 999, // Некорректное значение, которого нет в items
+          items: mockSizes,
+        },
+      });
+
+      // Проверяем, что ни один элемент не выбран
+      const selectedInput = wrapper.find("input:checked");
+      expect(selectedInput.exists()).toBe(false);
+    });
   });
 
   describe("Dom Structure", () => {
